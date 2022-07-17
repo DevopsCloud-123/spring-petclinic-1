@@ -4,6 +4,12 @@ pipeline {
         stage('gitclone') { 
             steps {
                 git branch: 'main', credentialsId: 'private_key', url: 'git@github.com:awscloud1/spring-petclinic.git'
+                 sh "./mvnw package"
+            }
+        }
+        stage('maven pakage build') { 
+            steps {
+                 sh "./mvnw package"
             }
         }
         stage('Build') { 
