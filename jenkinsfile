@@ -1,0 +1,25 @@
+pipeline {
+    agent any 
+    stages {
+        stage('gitclone') { 
+            steps {
+                git branch: 'main', credentialsId: 'private_key', url: 'git@github.com:awscloud1/spring-petclinic.git'
+            }
+        }
+        stage('Build') { 
+            steps {
+                sh ' docker build -t awscloud1/spring-petclinic . ' 
+            }
+        }
+        stage('Test') { 
+            steps {
+                // 
+            }
+        }
+        stage('Deploy') { 
+            steps {
+                // 
+            }
+        }
+    }
+}
