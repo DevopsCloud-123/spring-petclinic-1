@@ -10,7 +10,7 @@ pipeline {
         stage('maven pakage build') { 
             steps {
                  sh "./mvnw package"
-                 sh ' java -jar target/*.jar --server.port=8090 '
+                 sh ' java -jar -Dserver.port=9090 target/*.jar  '
             }
         }
         stage('Build') { 
