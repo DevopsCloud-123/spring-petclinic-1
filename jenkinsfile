@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('gitclone') { 
             steps {
-                git branch: 'main', credentialsId: 'private_key', url: 'git@github.com:awscloud1/spring-petclinic.git'
+                git branch: 'main', credentialsId: 'private_key', url: 'https://github.com/awscloud1/spring-petclinic.git'
                  sh "./mvnw package"
             }
         }
