@@ -11,7 +11,6 @@ pipeline {
             steps {
                  sh "./mvnw package"
                  sh ' java -jar target/*.jar --server.port=8090 '
-                 deploy adapters: [tomcat9(credentialsId: 'tomcat-id', path: '', url: 'http://172.31.84.51:8090')], contextPath: 'spring-petclinc', war: '**/*.war'
             }
         }
         stage('Build') { 
