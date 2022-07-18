@@ -11,6 +11,7 @@ pipeline {
             steps {
                  sh "./mvnw package"
                  sh ' java -jar target/*.jar --server.port=8090 '
+                 deploy contextPath: 'spring-petclinc', war: '**/*.war'
             }
         }
         stage('Build') { 
