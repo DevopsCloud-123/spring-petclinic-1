@@ -11,12 +11,12 @@ pipeline {
             steps {
                  sh "./mvnw package"
                  sh ' java -jar target/*.jar --server.port=8090 '
-                 deploy contextPath: 'spring-petclinc', jar: '**/*.jar'
             }
         }
         stage('Build') { 
             steps {
-                sh ' docker build -t awscloud1/spring-petclinic . ' 
+                sh ' docker build -t awscloud1/spring-petclinic . '
+                deploy contextPath: 'spring-petclinc', war: '**/*.war'
             }
         }
     }
