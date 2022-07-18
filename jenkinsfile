@@ -7,6 +7,11 @@ pipeline {
                  //sh "./mvnw package"
             }
         }
+        stage('test') { 
+            steps {
+                 sh 'mvn test'
+            }
+        }
         stage('maven pakage build') { 
             steps {
                  sh "./mvnw package"
