@@ -13,7 +13,7 @@ RUN ls /app
 RUN cd target && ls
 
 
-COPY spring-petclinic-2.4.2.jar docker-spring-petclinic-boot.jar
+ADD /app/target/spring-petclinic-2.4.2.jar docker-spring-petclinic-boot.jar
 
 #EXPOSE 8080
 EXPOSE 8082
