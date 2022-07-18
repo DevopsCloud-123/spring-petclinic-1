@@ -18,15 +18,5 @@ pipeline {
                 sh ' docker build -t awscloud1/spring-petclinic . ' 
             }
         }
-        stage('Test') { 
-            steps {
-                sh ' echo  "hello"  '
-            }
-        }
-        stage('Deploy') { 
-            steps {
-                sh ' echo "hello shraddha" '
-           }
-        }
     }
 }
