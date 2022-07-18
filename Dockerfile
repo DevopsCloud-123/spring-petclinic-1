@@ -6,9 +6,12 @@ FROM openjdk:8
 #COPY ${JAR_FILE} docker-spring-petclinic-boot.jar
 #ADD /var/lib/jenkins/workspace/simple-test/target/spring-petclinic-2.4.2.jar docker-spring-petclinic-boot.jar
 
-
+WORKDIR /app
 #ADD /workspace/target/spring-petclinic-2.4.2.jar docker-spring-petclinic-boot.jar
-COPY ${workspace}/simple-test/target/spring-petclinic-2.4.2.jar docker-spring-petclinic-boot.jar
+ADD . /app
+RUN ls /app
+
+COPY /app/target/spring-petclinic-2.4.2.jar docker-spring-petclinic-boot.jar
 
 #EXPOSE 8080
 EXPOSE 8082
