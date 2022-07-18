@@ -1,5 +1,9 @@
 pipeline {
     agent any 
+    environment {
+        AWS_REGION  = 'us-east-1'
+    }
+    
     stages {
         stage('gitclone') { 
             steps {
@@ -19,7 +23,7 @@ pipeline {
         }
         stage('Docker push') { 
             steps {
-                 sh "docker push 609352431981.dkr.ecr.us-east-1.amazonaws.com/shraddha-test/spring-petclinic:${BUILD_NUMBER}"
+                 sh " eval $(aws ecr get-login --region "$AWS_REGION" --no-include-email) && set -xe && docker push 609352431981.dkr.ecr.us-east-1.amazonaws.com/shraddha-test/spring-petclinic:${BUILD_NUMBER}"
             }
         }
     }
