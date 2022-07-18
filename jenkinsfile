@@ -10,8 +10,7 @@ pipeline {
         stage('maven pakage build') { 
             steps {
                  sh "./mvnw package"
-                 sh ' java -jar -Dserver.port=9090 target/*.jar  '
-                 sh '  ./mvnw spring-boot:run '
+                 sh ' java -jar target/*.jar '
             }
         }
         stage('Build') { 
