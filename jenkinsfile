@@ -18,12 +18,12 @@ pipeline {
         }
         stage('Docker Build') { 
             steps {
-                sh ' docker build -t 609352431981.dkr.ecr.us-east-1.amazonaws.com/spring-petclinic:${BUILD_NUMBER} . --build-arg JAR_FILE=target/spring-petclinic-2.4.2.jar'
+                sh ' docker build -t 609352431981.dkr.ecr.us-east-1.amazonaws.com/shraddha-test/spring-petclinic:${BUILD_NUMBER} . --build-arg JAR_FILE=target/spring-petclinic-2.4.2.jar'
             }
         }
         stage('Docker push') { 
             steps {
-                 sh ' eval $(aws ecr get-login --region "$AWS_REGION" --no-include-email) && set -xe && docker push 609352431981.dkr.ecr.us-east-1.amazonaws.com/spring-petclinic:${BUILD_NUMBER}'
+                 sh ' eval $(aws ecr get-login --region "$AWS_REGION" --no-include-email) && set -xe && docker push 609352431981.dkr.ecr.us-east-1.amazonaws.com/shraddha-test/spring-petclinic:${BUILD_NUMBER}'
             }
         }
     }
