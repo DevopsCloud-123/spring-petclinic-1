@@ -12,9 +12,14 @@ pipeline {
                  sh "./mvnw package"
             }
         }
-        stage('Build') { 
+        stage('Docker Build') { 
             steps {
-                sh ' docker build -t awscloud1/spring-petclinic . --build-arg JAR_FILE=target/spring-petclinic-2.4.2.jar'
+                sh ' docker build -t 609352431981.dkr.ecr.us-east-1.amazonaws.com/shraddha-test/spring-petclinic:${BUILD_NUMBER} . --build-arg JAR_FILE=target/spring-petclinic-2.4.2.jar'
+            }
+        }
+        stage('Docker push') { 
+            steps {
+                 sh "docker push 609352431981.dkr.ecr.us-east-1.amazonaws.com/shraddha-test/spring-petclinic:${BUILD_NUMBER}"
             }
         }
     }
