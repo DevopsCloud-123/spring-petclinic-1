@@ -10,6 +10,8 @@ WORKDIR /app
 #ADD /workspace/target/spring-petclinic-2.4.2.jar docker-spring-petclinic-boot.jar
 ADD . /app
 RUN ls /app
+RUN cd target && ls
+
 
 COPY /app/target/spring-petclinic-2.4.2.jar docker-spring-petclinic-boot.jar
 
