@@ -4,23 +4,17 @@ pipeline {
         stage('gitclone') { 
             steps {
                 git branch: 'main', credentialsId: 'private_key', url: 'https://github.com/awscloud1/spring-petclinic.git'
-                 //sh "./mvnw package"
+                
             }
         }
-        stage('test') { 
-            steps {
-                 echo "hello"
-                 }
-        }
-        stage('maven pakage build') { 
+      stage('maven pakage build') { 
             steps {
                  sh "./mvnw package"
-                // sh ' java -jar target/*.jar --server.port=8090 '
             }
         }
         stage('Build') { 
             steps {
-                sh ' docker build -t awscloud1/spring-petclinic . '
+                sh ' docker build -t awscloud1/spring-petclinic . --build-arg JAR_FILE=target/spring-petclinic-2.4.2.jar'
             }
         }
     }
