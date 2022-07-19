@@ -26,5 +26,10 @@ pipeline {
                  sh ' eval $(aws ecr get-login --region "$AWS_REGION" --no-include-email) && set -xe && docker push 609352431981.dkr.ecr.us-east-1.amazonaws.com/shraddha-test:${BUILD_NUMBER}'
             }
         }
+        stage('Deploy to container'){
+           steps{
+                   deploy adapters: [tomcat9(credentialsId: 'tomcat-id', path: '', url: 'http://172.31.84.51:8080')], contextPath: 'petclinc', war: 'target/spring-petclinic-2.4.2.jar'
+           }
+       }
     }
 }
