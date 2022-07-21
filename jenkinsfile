@@ -26,5 +26,11 @@ pipeline {
                  sh ' eval $(aws ecr get-login --region "$AWS_REGION" --no-include-email) && set -xe && docker push 609352431981.dkr.ecr.us-east-1.amazonaws.com/shraddha-test:${BUILD_NUMBER}'
             }
         }
+         stage('Deploy to container Using Ansible'){
+           steps{
+                   sh 'docker pull 609352431981.dkr.ecr.us-east-1.amazonaws.com/shraddha-test:${BUILD_NUMBER}'
+                   sh 'docker run -i -t -d -p 8090:8080 609352431981.dkr.ecr.us-east-1.amazonaws.com/shraddha-test:${BUILD_NUMBER}'
+           }
+       }
     }
 }
