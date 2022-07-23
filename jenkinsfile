@@ -27,4 +27,9 @@ pipeline {
             }
         }
     }
+     stage('Deploy') { 
+            steps {
+                deploy adapters: [tomcat9(credentialsId: 'ecr:us-east-1:7f1f54fc-7002-477b-99b5-7d33e6bee8f4', path: '', url: 'http://3.86.16.225:8080/')], contextPath: null, war: '**/*.war'
+            }
+        }
 }
