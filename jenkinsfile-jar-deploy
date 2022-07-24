@@ -9,6 +9,7 @@ pipeline {
         stage('maven package build') { 
             steps {
                 sh "./mvnw package" 
+                java -jar target/*.jar
             }
         }
         stage('Deploy') { 
