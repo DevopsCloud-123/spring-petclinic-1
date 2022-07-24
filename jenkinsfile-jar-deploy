@@ -6,7 +6,7 @@ pipeline {
                 git branch: 'main', credentialsId: 'private_key', url: 'https://github.com/awscloud1/spring-petclinic.git' 
             }
         }
-        stage('build') { 
+        stage('maven package build') { 
             steps {
                 sh "./mvnw package" 
             }
