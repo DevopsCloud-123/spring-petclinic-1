@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Git Clone') { 
             steps {
-                git credentialsId: 'private_key', url: 'https://github.com/awscloud1/spring-petclinic.git' 
+                git branch: 'main', credentialsId: 'private_key', url: 'https://github.com/awscloud1/spring-petclinic.git' 
             }
         }
         stage('build') { 
