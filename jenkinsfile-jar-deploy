@@ -1,14 +1,14 @@
 pipeline {
     agent any 
     stages {
-        stage('Build') { 
+        stage('Git Clone') { 
             steps {
                 git credentialsId: 'private_key', url: 'https://github.com/awscloud1/spring-petclinic.git' 
             }
         }
-        stage('Test') { 
+        stage('build') { 
             steps {
-                echo "testing" 
+                sh "./mvnw package" 
             }
         }
         stage('Deploy') { 
