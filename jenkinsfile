@@ -27,14 +27,6 @@ pipeline {
                  sh ' eval $(aws ecr get-login --region "$AWS_REGION" --no-include-email) && set -xe && docker push 609352431981.dkr.ecr.us-east-1.amazonaws.com/shraddha-test:${BUILD_NUMBER}'
             }
         }
-         stage('Run Docker container on Jenkins Agent') {
-             
-            steps 
-			{
-                //sh "docker run -d -p 8042:8082 609352431981.dkr.ecr.us-east-1.amazonaws.com/shraddha-test:${BUILD_NUMBER}"
-                sh 'echo "hello"'
-            }
-        }
         stage('Run Docker container on remote hosts') {
              
             steps {
