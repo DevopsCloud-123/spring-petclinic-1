@@ -30,14 +30,14 @@ pipeline {
              
             steps 
 			{
-                sh "docker run -d -p 8082:8082 609352431981.dkr.ecr.us-east-1.amazonaws.com/shraddha-test:${BUILD_NUMBER}"
+                sh "docker run -d -p 8042:8082 609352431981.dkr.ecr.us-east-1.amazonaws.com/shraddha-test:${BUILD_NUMBER}"
  
             }
         }
         stage('Run Docker container on remote hosts') {
              
             steps {
-                sh "docker -H ssh://ec2-user@172.31.84.51 run -d -p 8082:8082 609352431981.dkr.ecr.us-east-1.amazonaws.com/shraddha-test:${BUILD_NUMBER}"
+                sh "docker -H ssh://ec2-user@172.31.84.51 run -d -p 8042:8082 609352431981.dkr.ecr.us-east-1.amazonaws.com/shraddha-test:${BUILD_NUMBER}"
  
             }
         }
