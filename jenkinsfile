@@ -39,13 +39,11 @@ pipeline {
              
             steps {
                 //sh "docker -H ssh://ec2-user@172.31.84.51 run -d -p 8042:8082 609352431981.dkr.ecr.us-east-1.amazonaws.com/shraddha-test:${BUILD_NUMBER}"
-                //withCredentials([sshUserPrivateKey(credentialsId: 'tomcat', keyFileVariable: 'pem-key', usernameVariable: 'ec2-user')]) {
-    // some block
-}
-                withCredentials([usernameColonPassword(credentialsId: 'tomcat-id', variable: 'ec2-user')]) {
+                withCredentials([usernameColonPassword(credentialsId: 'tomcat-id', variable: 'tomcat')]) {
     // some block
 }
                 sh "docker run -d -p 8042:8082 609352431981.dkr.ecr.us-east-1.amazonaws.com/shraddha-test:${BUILD_NUMBER}"
             }
         }
     }
+}    
