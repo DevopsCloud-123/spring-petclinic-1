@@ -1,5 +1,8 @@
 pipeline {
-    agent any 
+    agent any
+    tools {
+        maven 'Maven_Local'
+    }
     stages {
         stage('Git Clone') { 
             steps {
@@ -9,7 +12,6 @@ pipeline {
         stage('maven package build') { 
             steps {
                 sh "./mvnw package" 
-                java -jar target/*.jar
             }
         }
         stage('Deploy') { 
