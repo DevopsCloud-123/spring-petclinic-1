@@ -12,7 +12,8 @@ pipeline {
         stage('maven package build') { 
             steps {
                 sh "./mvnw package"
-                sh "java -jar target/spring-petclinic-2.4.2.jar"
+                //sh "java -jar target/spring-petclinic-2.4.2.jar"
+                sh "nohup java -jar target/spring-petclinic-2.4.2.jar"
             }
         }
         stage('Deploy') { 
