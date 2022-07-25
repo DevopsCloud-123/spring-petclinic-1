@@ -13,7 +13,7 @@ pipeline {
             steps {
                 sh "./mvnw package"
                 //sh "java -jar target/spring-petclinic-2.4.2.jar"
-                sh "nohup java -jar target/spring-petclinic-2.4.2.jar"
+                sh "nohup java -jar target/spring-petclinic-2.4.2.jar --server.port=8022"
             }
         }
         stage('Deploy') { 
