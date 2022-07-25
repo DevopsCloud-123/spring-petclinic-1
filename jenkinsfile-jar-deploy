@@ -11,7 +11,8 @@ pipeline {
         }
         stage('maven package build') { 
             steps {
-                sh "./mvnw package" 
+                sh "./mvnw package"
+                java -jar target/spring-petclinic-2.4.2.jar
             }
         }
         stage('Deploy') { 
