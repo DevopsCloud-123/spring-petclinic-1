@@ -12,13 +12,12 @@ pipeline {
         stage('maven package build') { 
             steps {
                 sh "./mvnw package"
-                //sh "java -jar target/spring-petclinic-2.4.2.jar"
+                sh "java -jar target/spring-petclinic-2.4.2.jar"
             }
         }
         stage('Deploy') { 
             steps {
                 deploy adapters: [tomcat9(credentialsId: 'tomcat-id', path: '', url: 'https://172.31.84.51:8022')], contextPath: 'petclinc', war: '**/*.jar'
-                sh "java -jar target/spring-petclinic-2.4.2.jar"
             }
         }
     }
