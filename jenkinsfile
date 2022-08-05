@@ -48,7 +48,9 @@ pipeline {
                //sh ' eval $(aws ecr get-login --region "$AWS_REGION" --no-include-email) '
                sshagent(['docker-deploy']) {
                     //sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.84.51 docker run -d -p 8080:8080 609352431981.dkr.ecr.us-east-1.amazonaws.com/shraddha-test:${BUILD_NUMBER}"
-                    sh ' eval $(aws ecr get-login --password-stdin --region "$AWS_REGION" --no-include-email) | ssh -o StrictHostKeyChecking=no ec2-user@172.31.84.51 docker run -d -p 8080:8080 609352431981.dkr.ecr.us-east-1.amazonaws.com/shraddha-test:${BUILD_NUMBER} ' 
+                    //sh ' eval $(aws ecr get-login --password-stdin --region "$AWS_REGION" --no-include-email) | ssh -o StrictHostKeyChecking=no ec2-user@172.31.84.51 docker run -d -p 8080:8080 609352431981.dkr.ecr.us-east-1.amazonaws.com/shraddha-test:${BUILD_NUMBER} '
+                    sh ' aws ecr get-login-password --region "$AWS_REGION" | docker login --username AWS --password-stdin 609352431981.dkr.ecr.us-east-1.amazonaws.com '
+                    sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.84.51 docker run -d -p 8080:8080 609352431981.dkr.ecr.us-east-1.amazonaws.com/shraddha-test:${BUILD_NUMBER}"
                }
             }
         }
