@@ -45,6 +45,7 @@ pipeline {
                //script { deploy adapters: [tomcat9(credentialsId: 'tomcat-id', path: '', url: 'https://172.31.84.51:8080/')], contextPath: 'springpetclinc', war: '**/target/spring-petclinic-2.4.2.jar' }
                //sh "docker -H ssh://ec2-user@172.31.84.51 run -d -p 8080:8080 609352431981.dkr.ecr.us-east-1.amazonaws.com/shraddha-test:${BUILD_NUMBER}"
                //def DokerRun = "docker run -p 8090:8080 -d -t 609352431981.dkr.ecr.us-east-1.amazonaws.com/shraddha-test:${BUILD_NUMBER}"
+               sh ' eval $(aws ecr get-login --region "$AWS_REGION" --no-include-email) '
                sshagent(['docker-deploy']) {
                     sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.84.51 docker run -d -p 8080:8080 609352431981.dkr.ecr.us-east-1.amazonaws.com/shraddha-test:${BUILD_NUMBER}"
                }
